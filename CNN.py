@@ -92,6 +92,7 @@ model.summary()  # 顯示模型摘要資訊
 model.compile( loss = 'categorical_crossentropy' , optimizer = 'SGD' , metrics = ['accuracy'] )  # compile：編譯模型    loss：損失函數(crossentropy為交叉熵)     optimizer：優化器(SGD：隨機梯度下降法)  metrics：模型評估方式(accutacy：以準確度為主)
 
 ################################################# 以上為編譯模型設定 #################################################
+
 print( '\n\n' )
 epochs = 10  # epochs：訓練週期( 1個epoch = 16萬筆資料訓練過1次 ) ，不可定義太高，容易過擬合
 train_History = model.fit( image_Train , OneHot_Train , validation_split = 0.2 , epochs = epochs , batch_size = 128 , verbose = 2 )
