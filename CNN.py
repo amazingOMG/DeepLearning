@@ -11,7 +11,7 @@ import pandas as pd # 混淆矩陣需要此套件
 def preprocessing():  # 前置處理
     global image_Train , image_Test
 
-    image_Train = image_Train.reshape( image_Train.shape[0] , 28 , 28 , 1 ).astype( 'float32' )  # 將二維圖片資料( 28 * 28 = 784 )攤平為一維資料( 1 * 784 )
+    image_Train = image_Train.reshape( image_Train.shape[0] , 28 , 28 , 1 ).astype( 'float32' )  # 將二維圖片資料( 28 * 28 = 784 )轉換為( 6000 * 28 * 28 * 1 )的四維矩陣資料
     image_Test = image_Test.reshape( image_Test.shape[0] , 28 , 28 , 1 ).astype( 'float32' )
 
     image_Train /= 255  # 黑白圖的像素值介於0~255之間，除以255將特徵值壓縮至0與1之間(提升模型預測的準確度 。 梯度運算時加速收斂 )
