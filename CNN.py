@@ -85,11 +85,11 @@ OneHot_Train , OneHot_Test = One_hot( nb_classes ) # 將標籤轉換為 One-hot 
 model = Sequential() # 定義模型：宣告優化器
 layers( nb_classes ) # 設置輸入層、隱藏層、輸出層、Dropout層、平坦層
 model.summary()  # 顯示模型摘要資訊
+# Layer (type) 顯示每個層集的類別    Output Shape：輸出尺寸   Param：每個層集神經元的權重數量
 
 ################################################# 以上為定義模型 #################################################
 
 model.compile( loss = 'categorical_crossentropy' , optimizer = 'SGD' , metrics = ['accuracy'] )  # compile：編譯模型    loss：損失函數(crossentropy為交叉熵)     optimizer：優化器(SGD：隨機梯度下降法)  metrics：模型評估方式(accutacy：以準確度為主)
-# Layer (type) 顯示每個層集的類別    Output Shape：輸出尺寸   Param：每個層集神經元的權重數量 39520 = ( 784 + 1 ) * 50 :。算法說明 Param = (輸入資料的維度 + 1 ) * 神經元個數 為何+1？ keras預設每個輸入資料都帶有一個偏差值，考慮到每個神經元都帶有一個Bias(偏差)
 
 ################################################# 以上為編譯模型設定 #################################################
 print( '\n\n' )
