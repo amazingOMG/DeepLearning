@@ -36,7 +36,7 @@ def layers( classification ):  # 設置輸入層、隱藏層、輸出層、Dropo
 
     model.add( Dropout( 0.5 ) )
     model.add( Flatten() )  # 平坦層
-    model.add(  Dense( 128 , activation = 'relu' )  )  # input_shape定義輸入的尺寸格式，神經元數目設定為50
+    model.add(  Dense( 128 , activation = 'relu' )  )
     model.add( Dropout( 0.5 ) )  # Dropout層
     model.add(  Dense( classification , activation = 'softmax' )  )  # 輸出層
 
