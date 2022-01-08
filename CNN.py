@@ -1,3 +1,5 @@
+# 宜蘭大學 資工二 B1043201 鄧秀鳳
+
 from keras.datasets import mnist  # 使用套件匯入MNIST資料集
 from keras.utils import np_utils  # 後續將 label標籤 轉換成One-hot encoding需要
 from keras.models import Sequential  # 建立訓練模型需要此套件
@@ -33,24 +35,23 @@ def layers( classification ):  # 設置輸入層、隱藏層、輸出層、Dropo
     Pooling_Layer()
 
     model.add( Dropout( 0.5 ) )
-    model.add( Flatten() )
+    model.add( Flatten() )  # 平坦層
     model.add(  Dense( 128 , activation = 'relu' )  )  # input_shape定義輸入的尺寸格式，神經元數目設定為50
-    model.add( Dropout( 0.5 ) )
+    model.add( Dropout( 0.5 ) )  # Dropout層
+    model.add(  Dense( classification , activation = 'softmax' )  )  # 輸出層
 
-    model.add(  Dense( classification , activation = 'softmax' )  )
-
-def diagrams( train , test ):  # 圖表
-    plt.figure(  figsize = ( 6 , 4 )  )
-    plt.plot( train_History.history[ train ] , label = 'Train ' + train )
-    plt.plot( train_History.history[ test ] , label = 'Test ' + train )
-    plt.title( 'Train And Test ' + train )
-    plt.ylabel( train + ' Probability' )
-    plt.xlabel( 'Epoch' )
+def diagrams( train , test ):  # 繪製圖表
+    plt.figure(  figsize = ( 6 , 4 )  ) # 設定圖表大小
+    plt.plot( train_History.history[ train ] , label = 'Train ' + train ) # 設定圖表內容
+    plt.plot( train_History.history[ test ] , label = 'Test ' + train ) # 設定圖表內容
+    plt.title( 'Train And Test ' + train ) # 設定圖表標題
+    plt.ylabel( train + ' Probability' ) # 設定y軸名稱
+    plt.xlabel( 'Epoch' ) # 設定x軸名稱
     plt.legend()
-    plt.show()
+    plt.show() # 顯示圖表
 
 def Label_Image( label , image , predict , index ):
-    plt.figure(  figsize = ( 12 , 14 )  ) # 設置圖形大小
+    plt.figure(  figsize = ( 12 , 14 )  ) # 設置圖形大小為 1200 x 1400
 
     for loop in range( 0 , 10 ):
         ax = plt.subplot( 5 , 5 , 1 + loop )
@@ -65,6 +66,7 @@ def Label_Image( label , image , predict , index ):
     plt.show()
 
 ################################################################################################################
+
 np.random.seed( 10 )
 ( image_Train , label_Train ) , ( image_Test , label_Test ) = mnist.load_data()  # 載入MNIST資料集
 #          訓練集                            測試集
@@ -74,9 +76,9 @@ print( 'Train data = %d 筆資料' % ( len( image_Train ) ) )  # 輸出訓練集
 print( 'Test data = %d 筆資料\n\n' % ( len( image_Test ) ) )  # 輸出測試集總數
 
 nb_classes = 10  # 數字圖片為 0~9，共有10種類別
-preprocessing()
 
-OneHot_Train , OneHot_Test = One_hot( nb_classes )
+preprocessing() # 進行前置處理
+OneHot_Train , OneHot_Test = One_hot( nb_classes ) # 將標籤轉換為 One-hot 編碼
 
 ################################################# 以上為前置處理 #################################################
 
@@ -98,14 +100,14 @@ train_History = model.fit( image_Train , OneHot_Train , validation_split = 0.2 ,
 ################################################# 以上為訓練模型 #################################################
 
 print( '\n\n' )
-diagrams( 'accuracy' , 'val_accuracy' )
-diagrams( 'loss' , 'val_loss' )
+diagrams( 'accuracy' , 'val_accuracy' )  # 繪製訓練集與測試集的準確率
+diagrams( 'loss' , 'val_loss' )  # 繪製訓練集與測試集的錯誤率
 
 ################################################# 以上為資料視覺化 #################################################
 
 loss , accuracy = model.evaluate( image_Train , OneHot_Train , verbose = 2 )  # 評估模型準確率
 print(  '訓練集的準確度 = {:.2f}%\n'.format( accuracy * 100 )  )
-loss , accuracy = model.evaluate( image_Test , OneHot_Test , verbose = 2 )  # 評估模型準確率
+loss , accuracy = model.evaluate( image_Test , OneHot_Test , verbose = 2 )  # 評估模型錯誤率
 print(  '測試集的準確度 = {:.2f}%\n\n'.format( accuracy * 100 )  )
 
 ################################################# 以上為評估模型 #################################################
@@ -113,13 +115,13 @@ print(  '測試集的準確度 = {:.2f}%\n\n'.format( accuracy * 100 )  )
 prediction = np.argmax( model.predict( image_Test ) , axis = -1 ) # 預測測試集內的數字影像資料
 print( '測試集內 的 數字影像資料 預測結果為：' + str( prediction ) + '\n\n' ) # 輸出預測結果
 confusion_Matrix = pd.crosstab( label_Test , prediction , rownames = [ 'label' ] , colnames = [ 'predict' ] ) # 建立混淆矩陣
-print( str ( confusion_Matrix ) )
+print( str ( confusion_Matrix ) ) # 輸出混淆矩陣
 
 ################################################# 以上為建立混淆矩陣 #################################################
 
 dataFrame = pd.DataFrame( { 'label' : label_Test , 'predict' : prediction } ) # 將數字影像與預測結果匯入表格
 
-predict_Index = []
+predict_Index = [] # 記錄錯誤的預測索引值
 for loop in range( 0 , 10 ):
     print( '\n\n根據混淆矩陣，輸入待查詢的預測值    label = %d ， predict = ' %( loop ) , end = '' )
     predict_Number = int( input() )
