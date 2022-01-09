@@ -77,8 +77,8 @@ print( 'Train data = %d 筆資料' % ( len( image_Train ) ) )  # 輸出訓練集
 print( 'Test data = %d 筆資料\n\n' % ( len( image_Test ) ) )  # 輸出測試集總數
 
 nb_classes = 10  # 數字圖片為 0~9，共有10種類別
-preprocessing() # 進行前置處理
 
+preprocessing() # 進行前置處理
 OneHot_Train , OneHot_Test = One_hot( nb_classes ) # 將標籤轉換為 One-hot 編碼
 
 ################################################### 以上為前置處理 #####################################################################
@@ -86,7 +86,7 @@ OneHot_Train , OneHot_Test = One_hot( nb_classes ) # 將標籤轉換為 One-hot 
 model = Sequential() # 定義模型：宣告優化器
 layers( nb_classes ) # 設置輸入層、隱藏層、輸出層、Dropout層、平坦層
 model.summary()  # 顯示模型摘要資訊
-# Layer (type) 顯示每個層集的類別    Output Shape：輸出尺寸   Param：每個層集神經元的權重數量
+# Layer (type) 顯示每個層級的類別    Output Shape：輸出尺寸   Param：每個層集神經元的權重數量
 
 ################################################### 以上為定義模型 #####################################################################
 
