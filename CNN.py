@@ -121,7 +121,7 @@ print( str ( confusion_Matrix ) ) # 輸出混淆矩陣
 
 ################################################# 以上為建立混淆矩陣 #################################################
 
-dataFrame = pd.DataFrame( { 'label' : label_Test , 'predict' : prediction } ) # 將數字影像與預測結果匯入表格
+dataFrame = pd.DataFrame( { 'label' : label_Test , 'predict' : prediction } ) # 將數字影像標籤與預測結果匯入表格
 
 predict_Index = [] # 記錄錯誤的預測索引值
 for loop in range( 0 , 10 ):
