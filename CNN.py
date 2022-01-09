@@ -1,3 +1,4 @@
+#宜蘭大學 資工二 B1043201 鄧秀鳳
 from keras.datasets import mnist  # 使用套件匯入MNIST資料集
 from keras.utils import np_utils  # 後續將 label標籤 轉換成One-hot encoding需要
 from keras.models import Sequential  # 建立訓練模型需要此套件
