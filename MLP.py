@@ -22,7 +22,7 @@ def One_hot( classification ):  # 將標籤轉化成 One-hot encoding 的編碼�
     return label_Train_OneHot , label_Test_OneHot
 
 def layers( classification ):  # 設置輸入層、隱藏層、輸出層
-    model.add(  Dense( 256 , input_shape = ( 784 , ) , activation = 'relu' )  ) # 輸入層  # input_shape定義輸入的尺寸格式，神經元數目設定為256
+    model.add(  Dense( 256 , input_shape = ( 784 , ) , activation = 'relu' )  ) # 輸入層與隱藏層  # input_shape定義輸入的尺寸格式，神經元數目設定為256
     model.add( Dropout( 0.5 ) )  # Dropout層
     model.add( Dense( 256 , activation = 'relu' ) )  # 隱藏層
 
