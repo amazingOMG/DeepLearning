@@ -67,6 +67,7 @@ def Label_Image( label , image , predict , index ):
 
 ################################################################################################################
 
+print( ' CNN 識別 MNIST 數字資料集 ' )
 np.random.seed( 10 )
 ( image_Train , label_Train ) , ( image_Test , label_Test ) = mnist.load_data()  # 載入MNIST資料集
 #          訓練集                            測試集
