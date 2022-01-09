@@ -78,7 +78,7 @@ OneHot_Train , OneHot_Test = One_hot( nb_classes )  # 將標籤轉換為 One-hot
 model = Sequential()
 layers( nb_classes ) #設置輸入層、Dropout層與隱藏層
 model.summary()  # 顯示模型摘要資訊
-# Layer (type) 顯示每個層集的類別    Output Shape：輸出尺寸   Param：每個層集神經元的權重數量
+# Layer (type) 顯示每個層級的類別    Output Shape：輸出尺寸   Param：每個層集神經元的權重數量
 
 ################################################### 以上為定義模型 #####################################################################
 
